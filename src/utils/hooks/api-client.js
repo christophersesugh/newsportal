@@ -10,7 +10,7 @@ function client(endpoint, customConfig = {}) {
 
   return window
     .fetch(
-      `http://newsapi.org/v2/${endpoint}&from=2022-05-02&sortBy=popularity&apiKey=86cc7d52a4904a0d8165cd8295a8872f`,
+      `https://newsapi.org/v2/${endpoint}&from=2022-05-02&sortBy=popularity&apiKey=86cc7d52a4904a0d8165cd8295a8872f`,
       config
     )
     .then(async (response) => {
