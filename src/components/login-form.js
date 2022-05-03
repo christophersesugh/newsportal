@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Stack,
+  TextField,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 
 function LoginForm({ onSubmit, buttonText, headerText }) {
   const handleSubmit = (event) => {
@@ -31,6 +37,7 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       <Stack direction="row" spacing={2}>
         <Button type="submit" variant="contained">
           {buttonText}
+          <CircularProgress size={24} sx={{ color: "#fff", marginLeft: 1 }} />
         </Button>
       </Stack>
     </Stack>

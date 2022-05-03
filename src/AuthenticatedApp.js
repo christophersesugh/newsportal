@@ -1,3 +1,4 @@
+import DiscoverNews from "components/discover";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "screens/home";
@@ -5,7 +6,7 @@ import Home from "screens/home";
 function AuthenticatedApp() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<DiscoverNews />} />
     </Routes>
   );
 }

@@ -4,7 +4,7 @@ const AuthenticatedApp = React.lazy(() => import("AuthenticatedApp"));
 const UnauthenticatedApp = React.lazy(() => import("UnauthenticatedApp"));
 
 function App() {
-  const user = false;
+  const user = true;
   return (
     <>
       {user ? (
