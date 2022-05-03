@@ -12,16 +12,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { client } from "utils/hooks/api-client";
 import { useAsync } from "utils/hooks/use-async";
 import NewsCard from "./news-card";
-import Loading from "./loading";
 
 function DiscoverNews() {
   const { data, run, isError, isSuccess, error, isLoading } = useAsync();
-  // const [status, setStatus] = React.useState("idle");
-  // const [data, setData] = React.useState(null);
   const [query, setQuery] = React.useState("");
   const [queried, setQueried] = React.useState(false);
-  // const [error, setError] = React.useState(null);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setQuery(event.target.elements.search.value);
@@ -67,7 +62,7 @@ function DiscoverNews() {
       {isError ? (
         <Box component="div">
           <Typography component="p">Oh! There was an error.</Typography>
-          <Typography component="pre" sx={{ colr: "red" }}>
+          <Typography component="pre" sx={{ color: "red" }}>
             {error.message}
           </Typography>
         </Box>

@@ -13,7 +13,7 @@ function Loading() {
       }}
     >
       <Box component="div">
-        <CircularProgress size={200} />
+        <CircularProgress size={150} />
       </Box>
     </Box>
   );

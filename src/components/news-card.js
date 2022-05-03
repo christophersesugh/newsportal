@@ -2,7 +2,7 @@ import * as React from "react";
 import { Paper, Typography, Box, Stack, Button } from "@mui/material";
 
 function NewsCard({ article }) {
-  const { urlToImage, title, author, description } = article;
+  const { urlToImage, title, author, description, publishedAt } = article;
   return (
     <Paper
       elevation={1}
@@ -19,6 +19,7 @@ function NewsCard({ article }) {
           width: "100%",
           height: "100%",
           mx: 2,
+          display: "flex",
         }}
       >
         <img
@@ -41,26 +42,24 @@ function NewsCard({ article }) {
               </>
             ) : null}
           </Typography>
-          <Typography component="h3" variant="h5" align="center">
-            <strong>Title:</strong>
+
+          <Typography component="h3" variant="h6" sx={{ my: 1 }}>
+            {title}.
           </Typography>
-          <Typography component="h3" variant="h6" align="center" sx={{ my: 1 }}>
-            {title}
-          </Typography>
-          <Typography component="h4" variant="h5" align="center">
-            <strong>Description:</strong>
-          </Typography>
-          <Typography
-            component="p"
-            variant="body1"
-            align="center"
-            sx={{ mt: 1 }}
-          >
+
+          <Typography component="p" variant="body1" sx={{ mt: 2 }}>
             {description.substring(0, 100)}...
           </Typography>
           <Button variant="outlined" fullWidth sx={{ mb: 4 }}>
             read more
           </Button>
+          <Typography
+            component="p"
+            variant="caption"
+            sx={{ color: "dodgerblue" }}
+          >
+            {publishedAt}
+          </Typography>
         </Box>
       </Stack>
     </Paper>
