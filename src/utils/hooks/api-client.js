@@ -5,6 +5,8 @@
 function client(endpoint, customConfig = {}) {
   const config = {
     method: "GET",
+    mode: "cors",
+    // credentials: "include",
     ...customConfig,
   };
 
