@@ -72,7 +72,7 @@ function DiscoverNews() {
 
       {isSuccess ? (
         data?.articles?.length ? (
-          <Stack spacing={2} sx={{ my: 5 }}>
+          <Stack spacing={4} sx={{ my: 5 }}>
             {data.articles.map((article) => {
               return <NewsCard key={article.url} article={article} />;
             })}
