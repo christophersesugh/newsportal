@@ -14,7 +14,7 @@ import { useAsync } from "utils/hooks/use-async";
 import NewsCard from "./news-card";
 
 function DiscoverNews() {
-  const { data, run, isError, isSuccess, error, isLoading } = useAsync();
+  const { data, run, error, reset, isError, isSuccess, isLoading } = useAsync();
   const [query, setQuery] = React.useState("");
   const [queried, setQueried] = React.useState(false);
   const handleSubmit = (event) => {
@@ -52,7 +52,9 @@ function DiscoverNews() {
           {isLoading ? (
             <CircularProgress size={24} />
           ) : isError ? (
-            <span style={{ color: "red" }}>x</span>
+            <span onClick={reset} style={{ color: "red" }}>
+              x
+            </span>
           ) : (
             <SearchIcon />
           )}
