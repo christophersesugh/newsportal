@@ -5,7 +5,7 @@ import {
   Container,
   TextField,
   CircularProgress,
-  Stack,
+  Grid,
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -74,11 +74,11 @@ function DiscoverNews() {
 
       {isSuccess ? (
         data?.data?.length ? (
-          <Stack spacing={4} sx={{ my: 5 }}>
+          <Grid container spacing={4} sx={{ mt: 5 }}>
             {data.data.map((article) => {
               return <NewsCard key={article.uuid} article={article} />;
             })}
-          </Stack>
+          </Grid>
         ) : (
           <Typography component="h6" variant="h6">
             No results for the given query!

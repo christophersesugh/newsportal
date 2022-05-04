@@ -1,29 +1,23 @@
 import * as React from "react";
-import { Paper, Typography, Box, Button } from "@mui/material";
+import { Paper, Typography, Box, Button, Grid } from "@mui/material";
 
 function NewsCard({ article }) {
-  const { image_url, title, description, published_at, categories } = article;
+  const { image_url, title } = article;
   return (
-    <Paper
-      elevation={1}
-      sx={{
-        height: "100%",
-        width: "100%",
-        display: "grid",
-        placeItems: "center",
-      }}
-    >
-      <Box
+    <Grid item xs={12} sm={6} md={6} lg={4}>
+      <Paper
+        elevation={2}
         component="section"
         sx={{
+          height: "350px",
+          // overflowY: "hidden",
           width: "100%",
-          height: "250px",
-          mx: 2,
           display: "flex",
-          // overflow: "auto",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
-        <Box component="div" sx={{ height: "100%", width: "50%" }}>
+        <Box component="div" sx={{ height: "60%" }}>
           <img
             src={image_url}
             alt={title}
@@ -33,46 +27,14 @@ function NewsCard({ article }) {
             }}
           />
         </Box>
-
-        <Box sx={{ m: 1, width: "50%", height: "100%" }}>
-          <Typography component="p" variant="caption">
-            {categories ? (
-              <>
-                <span>
-                  {categories.length > 1 ? "Categories:" : "Category:"}
-                </span>{" "}
-                {categories.map((item, index) => (
-                  <span key={index} style={{ color: "dodgerblue" }}>
-                    {item}
-                    {categories.length - 1 ? "," : null}
-                  </span>
-                ))}
-              </>
-            ) : null}
+        <Box component="div" sx={{ height: "40%", m: 1 }}>
+          <Typography component="h4" variant="body1" sx={{ m: 1 }}>
+            {title.substring(0, 80)}...
           </Typography>
-
-          <Typography component="h3" variant="h6" sx={{ my: 1 }}>
-            {title}.
-          </Typography>
-
-          <Typography component="p" variant="body1" sx={{ mt: 2 }}>
-            {description
-              ? `${description.substring(0, 100)}...`
-              : "No description!"}
-          </Typography>
-          <Button variant="outlined" fullWidth sx={{ mb: 4 }}>
-            read more
-          </Button>
-          <Typography
-            component="p"
-            variant="caption"
-            sx={{ color: "dodgerblue" }}
-          >
-            {published_at}
-          </Typography>
+          <Button variant="outlined">read more</Button>
         </Box>
-      </Box>
-    </Paper>
+      </Paper>
+    </Grid>
   );
 }
 
