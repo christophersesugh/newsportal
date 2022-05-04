@@ -27,8 +27,10 @@ function DiscoverNews() {
     if (!queried) {
       return;
     }
-    run(client(`everything?q=${encodeURIComponent(query)}`));
+    run(client(`&search=${encodeURIComponent(query)}`));
   }, [queried, query, run]);
+
+  console.log(data);
 
   return (
     <Container maxWidth="md">
@@ -62,19 +64,19 @@ function DiscoverNews() {
       </Box>
 
       {isError ? (
-        <Box component="div">
+        <Box component="div" mt={4}>
           <Typography component="p">Oh! There was an error.</Typography>
-          <Typography component="pre" sx={{ color: "red" }}>
+          <Typography component="p" sx={{ color: "red" }}>
             {error.message}
           </Typography>
         </Box>
       ) : null}
 
       {isSuccess ? (
-        data?.articles?.length ? (
+        data?.data?.length ? (
           <Stack spacing={4} sx={{ my: 5 }}>
-            {data.articles.map((article) => {
-              return <NewsCard key={article.url} article={article} />;
+            {data.data.map((article) => {
+              return <NewsCard key={article.uuid} article={article} />;
             })}
           </Stack>
         ) : (

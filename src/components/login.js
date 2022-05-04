@@ -5,16 +5,8 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import LoginForm from "./login-form";
 import Modal from "./modal";
 
-export default function Login() {
+export default function Login({ login, register }) {
   const [isOpen, setIsOpen] = React.useState("none");
-
-  const login = (formData) => {
-    console.log("form data", formData);
-  };
-
-  const register = (formData) => {
-    console.log("form data", formData);
-  };
 
   return (
     <Box

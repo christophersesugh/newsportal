@@ -2,10 +2,10 @@ import * as React from "react";
 import { Container } from "@mui/material";
 import Login from "components/login";
 
-function UnauthenticatedApp() {
+function UnauthenticatedApp({ login, register }) {
   return (
     <Container maxWidth="md">
-      <Login />
+      <Login login={login} register={register} />
     </Container>
   );
 }
