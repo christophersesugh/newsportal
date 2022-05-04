@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Paper, Typography, Box, Button, Grid } from "@mui/material";
+import { Paper, Typography, Box, Grid } from "@mui/material";
 
 function NewsCard({ article }) {
   const { image_url, title } = article;
@@ -10,14 +10,10 @@ function NewsCard({ article }) {
         component="section"
         sx={{
           height: "350px",
-          // overflowY: "hidden",
           width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
         }}
       >
-        <Box component="div" sx={{ height: "60%" }}>
+        <Box component="div" sx={{ height: "70%" }}>
           <img
             src={image_url}
             alt={title}
@@ -27,11 +23,11 @@ function NewsCard({ article }) {
             }}
           />
         </Box>
-        <Box component="div" sx={{ height: "40%", m: 1 }}>
+        <Box component="div" sx={{ height: "30%", m: 1 }}>
           <Typography component="h4" variant="body1" sx={{ m: 1 }}>
-            {title.substring(0, 80)}...
+            {title.substring(0, 200)}...{" "}
+            <span style={{ color: "dodgerblue" }}>read more</span>
           </Typography>
-          <Button variant="outlined">read more</Button>
         </Box>
       </Paper>
     </Grid>

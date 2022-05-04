@@ -6,11 +6,12 @@ const UnauthenticatedApp = React.lazy(() => import("unauthenticated-app"));
 
 function App() {
   const { user, login, logout, register } = useAuth();
+
   return (
     <>
       {user ? (
         <Router>
-          <AuthenticatedApp logout={logout} />
+          <AuthenticatedApp logout={logout} user={user} />
         </Router>
       ) : (
         <UnauthenticatedApp login={login} register={register} />
