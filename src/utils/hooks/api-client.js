@@ -1,5 +1,5 @@
-const newsUrl = process.env.REACT_APP_URL;
-const urlApiToken = process.env.REACT_APP_URL_API_KEY;
+// const newsUrl = process.env.REACT_APP_URL;
+// const urlApiToken = process.env.REACT_APP_URL_API_KEY;
 
 function client(endpoint, customConfig = {}) {
   const config = {

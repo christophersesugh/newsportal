@@ -14,10 +14,10 @@ const getToken = async () => null;
 
 const localStorageKey = "_auth_provider_token_";
 
-const handleUserResponse = ({ user }) => {
-  window.localStorage.setItem(localStorageKey, user.token);
-  return user;
-};
+// const handleUserResponse = ({ user }) => {
+//   window.localStorage.setItem(localStorageKey, user.token);
+//   return user;
+// };
 
 // const login = true;
 // const register = true;
