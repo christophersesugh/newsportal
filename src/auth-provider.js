@@ -13,23 +13,38 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
+const localStorageKey = "__auth_provider_token__";
+
 export const useAuth = () => {
   const [user, setUser] = React.useState(null);
 
   const register = ({ email, password }) =>
-    createUserWithEmailAndPassword(auth, email, password).then((credentials) =>
-      setUser(credentials.user)
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (credentials) => {
+        window.localStorage.setItem(
+          localStorageKey,
+          credentials.user.accessToken
+        );
+        setUser(credentials.user);
+      }
     );
 
   const login = ({ email, password }) =>
     signInWithEmailAndPassword(auth, email, password).then((credentials) => {
+      window.localStorage.setItem(
+        localStorageKey,
+        credentials.user.accessToken
+      );
       setUser(credentials.user);
-      console.log(credentials.user);
     });
+
+  async function getToken() {
+    return window.localStorage.getItem(localStorageKey);
+  }
 
   const logout = () => {
     signOut(auth);
     setUser(null);
   };
-  return { login, register, user, logout };
+  return { login, register, user, logout, getToken };
 };
