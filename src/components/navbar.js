@@ -1,8 +1,6 @@
 import * as React from "react";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import SearchIcon from "@mui/icons-material/Search";
 import NavLink from "./nav-link";
 
 function Navbar({ logout, user }) {
