@@ -1,60 +1,40 @@
 import * as React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useAuth } from "auth-provider";
+import { onAuthStateChanged } from "firebase/auth";
+import * as auth from "auth-provider";
 import Loading from "components/loading";
-import { Box, Typography } from "@mui/material";
 const AuthenticatedApp = React.lazy(() => import("authenticated-app"));
 const UnauthenticatedApp = React.lazy(() => import("unauthenticated-app"));
 
 function App() {
-  const {
-    user,
-    login,
-    logout,
-    register,
-    error,
-    isError,
-    isLoading,
-    isSuccess,
-    isIdle,
-  } = useAuth();
+  const [user, setUser] = React.useState(null);
 
-  if (isIdle || isLoading) {
-    return <Loading />;
-  }
+  const register = (form) => auth.register(form);
 
-  if (isError) {
-    return (
-      <Box>
-        <Typography component="p">
-          Oh oh... There was an error. Try refreshing the page.
-        </Typography>
-        <Typography component="pre" color="error">
-          {error.message}
-        </Typography>
-      </Box>
-    );
-  }
+  const login = (form) => auth.login(form);
 
-  if (isSuccess) {
-    return (
-      <>
-        {user ? (
-          <Router>
-            <AuthenticatedApp logout={logout} />
-          </Router>
-        ) : (
-          <UnauthenticatedApp
-            login={login}
-            register={register}
-            isError={isError}
-            isLoading={isLoading}
-            error={error}
-          />
-        )}
-      </>
-    );
-  }
+  const logout = () => {
+    auth.logout();
+    setUser(null);
+  };
+
+  React.useEffect(() => {
+    onAuthStateChanged(auth.auth, (user) => setUser(user));
+  }, []);
+
+  console.log(user);
+
+  return (
+    <React.Suspense fallback={<Loading />}>
+      {user ? (
+        <Router>
+          <AuthenticatedApp logout={logout} user={user} />
+        </Router>
+      ) : (
+        <UnauthenticatedApp login={login} register={register} />
+      )}
+    </React.Suspense>
+  );
 }
 
 export default App;

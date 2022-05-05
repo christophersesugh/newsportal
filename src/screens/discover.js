@@ -11,7 +11,10 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { client } from "utils/hooks/api-client";
 import { useAsync } from "utils/hooks/use-async";
-import NewsCard from "./news-card";
+import NewsCard from "components/news-card";
+
+const endpoint =
+  "all?api_token=vvCBlD82DzthRMDvQOyTQS7JL7vvEkGSfptAHvhL&search=";
 
 function DiscoverNews() {
   const { data, run, error, reset, isError, isSuccess, isLoading } = useAsync();
@@ -27,7 +30,7 @@ function DiscoverNews() {
     if (!queried) {
       return;
     }
-    run(client(`&search=${encodeURIComponent(query)}`));
+    run(client(`${endpoint}${encodeURIComponent(query)}`));
   }, [queried, query, run]);
 
   console.log(data);
