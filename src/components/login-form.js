@@ -6,8 +6,10 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-
+import { useAuth } from "auth-provider";
 function LoginForm({ onSubmit, buttonText, headerText }) {
+  const { isLoading, isError, error } = useAuth();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
@@ -17,6 +19,7 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       password: password.value,
     });
   };
+
   return (
     <Stack
       component="form"
@@ -37,9 +40,16 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       <Stack direction="row" spacing={2}>
         <Button type="submit" variant="contained">
           {buttonText}
-          <CircularProgress size={24} sx={{ color: "#fff", marginLeft: 1 }} />
+          {isLoading ? (
+            <CircularProgress size={24} sx={{ color: "#fff", marginLeft: 1 }} />
+          ) : null}
         </Button>
       </Stack>
+      {isError ? (
+        <Typography component="p" color="error">
+          {error.message}
+        </Typography>
+      ) : null}
     </Stack>
   );
 }
