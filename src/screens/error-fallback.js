@@ -7,7 +7,7 @@ const ErrorFallback = ({ error }) => {
       <Box
         component="div"
         sx={{
-          heigh: "100%",
+          height: "100%",
           width: "100%",
           display: "gird",
           placeItems: "center",
