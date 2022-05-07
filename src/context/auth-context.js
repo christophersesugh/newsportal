@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
   }
 
   if (isSuccess) {
-    const value = { register, login, user, logout, error, isError };
+    const value = { register, login, user, logout };
 
     return (
       <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
