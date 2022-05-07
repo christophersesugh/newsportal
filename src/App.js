@@ -1,7 +1,5 @@
 import * as React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import * as auth from "auth-provider";
 import { useAuth } from "context/auth-context";
 import Loading from "components/loading";
 const AuthenticatedApp = React.lazy(() => import("authenticated-app"));
