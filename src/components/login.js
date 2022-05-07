@@ -1,12 +1,13 @@
 import React from "react";
-
 import { Box, Button, Stack, Typography } from "@mui/material";
-
 import LoginForm from "./login-form";
 import Modal from "./modal";
+import { useAuth } from "context/auth-context";
 
-export default function Login({ login, register }) {
+export default function Login() {
   const [isOpen, setIsOpen] = React.useState("none");
+
+  const { login, register } = useAuth();
 
   return (
     <Box

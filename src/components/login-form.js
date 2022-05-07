@@ -4,18 +4,23 @@ import {
   Stack,
   TextField,
   Typography,
-  // CircularProgress,
+  CircularProgress,
 } from "@mui/material";
+import { useAsync } from "utils/hooks/use-async";
 
 function LoginForm({ onSubmit, buttonText, headerText }) {
+  const { run, isError, isLoading, error } = useAsync();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
 
-    onSubmit({
-      email: email.value,
-      password: password.value,
-    });
+    run(
+      onSubmit({
+        email: email.value,
+        password: password.value,
+      })
+    );
   };
 
   return (
@@ -38,16 +43,17 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       <Stack direction="row" spacing={2}>
         <Button type="submit" variant="contained">
           {buttonText}
-          {/* {isLoading ? (
+          {isLoading ? (
             <CircularProgress size={24} sx={{ color: "#fff", marginLeft: 1 }} />
-          ) : null} */}
+          ) : null}
         </Button>
       </Stack>
-      {/* {isError ? (
+
+      {isError && (
         <Typography component="p" color="error">
-          {error.message}
+          {error.message.slice(9, error.message.length - 1)}
         </Typography>
-      ) : null} */}
+      )}
     </Stack>
   );
 }

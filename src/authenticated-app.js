@@ -5,6 +5,7 @@ import Navbar from "components/navbar";
 import Article from "screens/article";
 import NotFound from "screens/not-found";
 import Favorite from "screens/favorite";
+import Footer from "components/footer";
 
 function AuthenticatedApp({ logout, user }) {
   return (
@@ -16,6 +17,7 @@ function AuthenticatedApp({ logout, user }) {
         <Route path="/favorite" element={<Favorite user={user} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* <Footer /> */}
     </>
   );
 }

@@ -11,16 +11,10 @@ function Navbar({ logout, user }) {
           News Portal
         </Typography>
         <Button color="primary" variant="outlined" sx={{ ml: 2 }}>
-          <NavLink to="/">
-            Discover
-            {/* <SearchIcon /> */}
-          </NavLink>
+          <NavLink to="/">Discover</NavLink>
         </Button>
         <Button color="primary" variant="outlined" sx={{ mx: 2 }}>
-          <NavLink to="/favorite">
-            Favorites
-            {/* <FavoriteBorderIcon /> */}
-          </NavLink>
+          <NavLink to="/favorite">Favorites</NavLink>
         </Button>
         <Button color="error" variant="outlined" onClick={logout}>
           <LogoutIcon color="inherit" />

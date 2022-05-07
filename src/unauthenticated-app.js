@@ -5,7 +5,7 @@ import Login from "components/login";
 function UnauthenticatedApp({ login, register }) {
   return (
     <Container maxWidth="md">
-      <Login login={login} register={register} />
+      <Login />
     </Container>
   );
 }

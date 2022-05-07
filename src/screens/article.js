@@ -19,7 +19,9 @@ const Article = ({ user }) => {
 
   const { uuid } = useParams();
 
-  const userToken = user.auth.currentUser.accessToken;
+  const userToken = user.reloadUserInfo.localId;
+
+  console.log(userToken);
 
   React.useEffect(() => {
     run(client(`uuid/${uuid}${api_token}`, { token: userToken }));

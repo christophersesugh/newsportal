@@ -11,30 +11,31 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-const localStorageKey = "__auth_provider_token__";
+const sessionStorageKey = "__auth_provider_token__";
 
 const handleUserResponse = (credentials) => {
-  window.localStorage.setItem(localStorageKey, credentials.user.accessToken);
-};
-
-const getToken = async () => {
-  return window.localStorage.getItem(localStorageKey);
-};
-
-const register = ({ email, password }) => {
-  createUserWithEmailAndPassword(auth, email, password).then(
-    handleUserResponse
+  window.sessionStorage.setItem(
+    sessionStorageKey,
+    credentials._tokenResponse.refreshToken
   );
 };
 
-const login = ({ email, password }) => {
-  signInWithEmailAndPassword(auth, email, password).then(handleUserResponse);
+const getToken = async () => {
+  return window.sessionStorage.getItem(sessionStorageKey);
 };
+
+const register = ({ email, password }) =>
+  createUserWithEmailAndPassword(auth, email, password).then(
+    handleUserResponse
+  );
+
+const login = ({ email, password }) =>
+  signInWithEmailAndPassword(auth, email, password).then(handleUserResponse);
 
 const logout = async () => {
   signOut(auth).then(() => {
-    window.localStorage.removeItem(localStorageKey);
+    window.localStorage.removeItem(sessionStorageKey);
   });
 };
 
-export { register, login, logout, getToken, localStorageKey, auth };
+export { register, login, logout, getToken, sessionStorageKey, auth };
