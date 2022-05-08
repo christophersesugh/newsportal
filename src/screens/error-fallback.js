@@ -13,12 +13,14 @@ const ErrorFallback = ({ error }) => {
           placeItems: "center",
         }}
       >
-        <Typography component="h4" variant="h5">
-          Oh... There was an error
-        </Typography>
-        <Typography component="pre" variant="body2" color="error">
-          {error.message}
-        </Typography>
+        <Box component="div">
+          <Typography component="h4" variant="h5">
+            Oh... There was an error
+          </Typography>
+          <Typography component="pre" variant="body2" color="error">
+            {error.message}
+          </Typography>
+        </Box>
       </Box>
     </Container>
   );
