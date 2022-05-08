@@ -45,7 +45,7 @@ const NewsCategory = ({ category, setCategory }) => {
   return (
     <Box mt={4}>
       <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
-        <InputLabel id="language-select">Category</InputLabel>
+        <InputLabel id="language-select">Categories</InputLabel>
         <Select
           labelId="category-select"
           id="demo-select-small"
