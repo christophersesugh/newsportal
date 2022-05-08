@@ -37,9 +37,6 @@ const NewsLanguage = ({ language, setLanguage }) => {
   };
   return (
     <Box mt={4}>
-      <Typography component="p" variant="body1">
-        Select news language
-      </Typography>
       <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
         <InputLabel id="language-select">Language</InputLabel>
         <Select

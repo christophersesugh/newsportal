@@ -44,9 +44,6 @@ const NewsCategory = ({ category, setCategory }) => {
   };
   return (
     <Box mt={4}>
-      <Typography component="p" variant="body1">
-        Select news category
-      </Typography>
       <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
         <InputLabel id="language-select">Category</InputLabel>
         <Select

@@ -89,14 +89,22 @@ function DiscoverNews() {
       ) : null}
 
       <Box
-        component="section"
-        sx={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
+        component="div"
+        sx={{ display: "grid", placeItems: "center", mt: 4 }}
       >
-        <NewsLanguage language={language} setLanguage={setLanguage} />
-        <NewsCategory category={category} setCategory={setCategory} />
+        <Typography component="h5" variant="h6">
+          Filter News
+        </Typography>
+        <Box
+          component="section"
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <NewsLanguage language={language} setLanguage={setLanguage} />
+          <NewsCategory category={category} setCategory={setCategory} />
+        </Box>
       </Box>
       {isSuccess ? (
         data?.data?.length ? (
