@@ -29,7 +29,7 @@ const NewsLanguage = ({ language, setLanguage }) => {
     setLanguage(event.target.value);
   };
   return (
-    <Box mt={4}>
+    <Box mt={4} mr={1}>
       <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
         <InputLabel id="language-select">Language</InputLabel>
         <Select
