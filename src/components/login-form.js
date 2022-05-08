@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
   CircularProgress,
+  Alert,
 } from "@mui/material";
 import { useAsync } from "utils/hooks/use-async";
 
@@ -30,7 +31,7 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       aria-label="Register"
       onSubmit={handleSubmit}
     >
-      <Typography component="h3" variant="h4" align="center" sx={{ mb: 2 }}>
+      <Typography component="h3" variant="h4" align="center" sx={{ mb: 1.5 }}>
         {headerText}
       </Typography>
       <TextField id="email" type="email" placeholder="Email" size="small" />
@@ -50,9 +51,12 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
       </Stack>
 
       {isError && (
-        <Typography component="p" color="error">
+        <Alert severity="error">
           {error.message.slice(9, error.message.length - 1)}
-        </Typography>
+        </Alert>
+        // <Typography component="p" color="error">
+        //   {error.message.slice(9, error.message.length - 1)}
+        // </Typography>
       )}
     </Stack>
   );
