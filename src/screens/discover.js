@@ -9,15 +9,22 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { client } from "utils/hooks/api-client";
+import { client } from "utils/api-client";
 import { useAsync } from "utils/hooks/use-async";
 import NewsCard from "components/news-card";
+import NewsLanguage from "components/news-language";
+import NewsCategory from "components/news-category";
 
 const endpoint =
   "all?api_token=vvCBlD82DzthRMDvQOyTQS7JL7vvEkGSfptAHvhL&search=";
+const lang = "&language=";
+const cat = "&categories=";
 
 function DiscoverNews() {
   const { data, run, error, reset, isError, isSuccess, isLoading } = useAsync();
+  const [language, setLanguage] = React.useState("en");
+  const [category, setCategory] = React.useState("business");
+
   const [query, setQuery] = React.useState("");
   const [queried, setQueried] = React.useState(false);
   const handleSubmit = (event) => {
@@ -30,8 +37,14 @@ function DiscoverNews() {
     if (!queried) {
       return;
     }
-    run(client(`${endpoint}${encodeURIComponent(query)}`));
-  }, [queried, query, run]);
+    run(
+      client(
+        `${endpoint}${encodeURIComponent(
+          query
+        )}${lang}${language}${cat}${category}`
+      )
+    );
+  }, [category, language, queried, query, run]);
 
   console.log(data);
 
@@ -75,6 +88,16 @@ function DiscoverNews() {
         </Box>
       ) : null}
 
+      <Box
+        component="section"
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <NewsLanguage language={language} setLanguage={setLanguage} />
+        <NewsCategory category={category} setCategory={setCategory} />
+      </Box>
       {isSuccess ? (
         data?.data?.length ? (
           <Grid container spacing={4} sx={{ mt: 5 }}>
@@ -83,7 +106,7 @@ function DiscoverNews() {
             })}
           </Grid>
         ) : (
-          <Typography component="h6" variant="h6">
+          <Typography component="h6" variant="h6" sx={{ mt: 4 }}>
             No results for the given query!
           </Typography>
         )

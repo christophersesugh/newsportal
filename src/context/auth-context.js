@@ -1,14 +1,8 @@
 import * as React from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import * as auth from "auth-provider";
 import Loading from "components/loading";
 import ErrorFallback from "screens/error-fallback";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "config";
-
-const app = initializeApp(firebaseConfig);
-
-const Auth = getAuth(app);
 
 const AuthContext = React.createContext();
 AuthContext.displayName = "AuthContext";
@@ -28,12 +22,15 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     auth.logout();
+    setUser(null);
   };
+
+  const token = auth.getToken();
 
   React.useEffect(() => {
     setStatus("loading");
     onAuthStateChanged(
-      Auth,
+      auth.auth,
       (user) => {
         setUser(user);
         setStatus("success");
@@ -45,6 +42,8 @@ const AuthProvider = ({ children }) => {
     );
   }, []);
 
+  console.log(user);
+
   if (isLoading || isIdle) {
     return <Loading />;
   }
@@ -54,7 +53,7 @@ const AuthProvider = ({ children }) => {
   }
 
   if (isSuccess) {
-    const value = { register, login, user, logout };
+    const value = { register, login, user, logout, token };
 
     return (
       <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

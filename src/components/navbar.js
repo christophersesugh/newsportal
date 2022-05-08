@@ -1,24 +1,20 @@
 import * as React from "react";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NavLink from "./nav-link";
+import { useAuth } from "context/auth-context";
 
-function Navbar({ logout, user }) {
+function Navbar() {
+  const { logout } = useAuth();
   return (
     <AppBar position="static" color="inherit">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           News Portal
         </Typography>
-        <Button color="primary" variant="outlined" sx={{ ml: 2 }}>
-          <NavLink to="/">Discover</NavLink>
-        </Button>
-        <Button color="primary" variant="outlined" sx={{ mx: 2 }}>
-          <NavLink to="/favorite">Favorites</NavLink>
-        </Button>
-        <Button color="error" variant="outlined" onClick={logout}>
-          <LogoutIcon color="inherit" />
-        </Button>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/favorite">Favorites</NavLink>
+        <LogoutIcon color="inherit" onClick={logout} sx={{ color: "red" }} />
       </Toolbar>
     </AppBar>
   );

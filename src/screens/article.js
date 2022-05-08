@@ -9,23 +9,20 @@ import {
   Typography,
 } from "@mui/material";
 import { useAsync } from "utils/hooks/use-async";
-import { client } from "utils/hooks/api-client";
+import { client } from "utils/api-client";
+import { useAuth } from "context/auth-context";
 import Loading from "components/loading";
 
 const api_token = "?api_token=vvCBlD82DzthRMDvQOyTQS7JL7vvEkGSfptAHvhL";
 
-const Article = ({ user }) => {
+const Article = () => {
   const { data, run } = useAsync();
-
+  const { token } = useAuth();
   const { uuid } = useParams();
 
-  const userToken = user.reloadUserInfo.localId;
-
-  console.log(userToken);
-
   React.useEffect(() => {
-    run(client(`uuid/${uuid}${api_token}`, { token: userToken }));
-  }, [run, userToken, uuid]);
+    run(client(`uuid/${uuid}${api_token}`, { token: token }));
+  }, [run, token, uuid]);
 
   const { image_url, title, url, snippet } = data ?? <Loading />;
 

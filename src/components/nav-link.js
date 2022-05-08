@@ -7,6 +7,8 @@ function NavLink(props) {
       {...props}
       style={{
         textDecoration: "none",
+        color: "inherit",
+        marginRight: "10px",
       }}
     />
   );
