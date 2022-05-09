@@ -1,6 +1,6 @@
 # News Portal
 
-#### News portal is a news webapp that enhances news discovery but easily filtering and searching for news in different languages and categories.
+#### News portal is a news webapp that enhances news discovery by easily filtering and searching for news in different languages and categories.
 
 ### Live: [News Portal](https://newsportal-liart.vercel.app/)
 
