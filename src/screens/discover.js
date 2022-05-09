@@ -1,20 +1,19 @@
 import * as React from "react";
 import {
   Box,
-  Button,
   Container,
-  TextField,
   CircularProgress,
   Grid,
   Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { client } from "utils/api-client";
 import { useAsync } from "utils/hooks/use-async";
 import NewsCard from "components/news-card";
 import NewsLanguage from "components/news-language";
 import NewsCategory from "components/news-category";
+import SearchForm from "components/search-form";
 
+//This is a test app so no need to hide environmental variables.
 const endpoint =
   "all?api_token=vvCBlD82DzthRMDvQOyTQS7JL7vvEkGSfptAHvhL&search=";
 const lang = "&language=";
@@ -27,12 +26,6 @@ function DiscoverNews() {
   const [language, setLanguage] = React.useState("en");
   const [category, setCategory] = React.useState("business");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setQuery(event.target.elements.search.value);
-    setQueried(true);
-  };
-
   React.useEffect(() => {
     run(
       client(
@@ -43,36 +36,11 @@ function DiscoverNews() {
     );
   }, [category, language, queried, query, run]);
 
+  const searchFormProps = { setQueried, setQuery, reset, isError, isLoading };
+
   return (
     <Container maxWidth="md">
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ display: "flex", mt: 4 }}
-      >
-        <TextField
-          id="search"
-          placeholder="Search News..."
-          size="small"
-          fullWidth
-        />
-        <Button
-          type="submit"
-          disableElevation
-          variant="text"
-          sx={{ m: 0, ml: -8 }}
-        >
-          {isLoading ? (
-            <CircularProgress size={24} />
-          ) : isError ? (
-            <span onClick={reset} style={{ color: "red" }}>
-              x
-            </span>
-          ) : (
-            <SearchIcon />
-          )}
-        </Button>
-      </Box>
+      <SearchForm {...searchFormProps} />
 
       {isError ? (
         <Box component="div" mt={4}>
