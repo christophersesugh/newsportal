@@ -42,17 +42,6 @@ function DiscoverNews() {
     <Container maxWidth="md">
       <SearchForm {...searchFormProps} />
 
-      {isError ? (
-        <Box component="div" mt={4}>
-          <Typography component="p">
-            Oh! There was an error, try refreshing the page.
-          </Typography>
-          <Typography component="p" sx={{ color: "red" }}>
-            {error.message}
-          </Typography>
-        </Box>
-      ) : null}
-
       <Box
         component="div"
         sx={{ display: "grid", placeItems: "center", mt: 4 }}
@@ -71,6 +60,16 @@ function DiscoverNews() {
           <NewsCategory category={category} setCategory={setCategory} />
         </Box>
       </Box>
+      {isError ? (
+        <Box component="div" mt={4}>
+          <Typography component="p">
+            Oh! There was an error, try refreshing the page.
+          </Typography>
+          <Typography component="p" sx={{ color: "red" }}>
+            {error.message}
+          </Typography>
+        </Box>
+      ) : null}
       {isLoading ? (
         <Grid container mt={4} sx={{ display: "grid", placeItems: "center" }}>
           <CircularProgress size={60} />
