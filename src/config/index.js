@@ -1,6 +1,5 @@
 export const firebaseConfig = {
   apiKey: "AIzaSyDvFtCJYxGzV5EeZGgT1MbQKfXMfOPZ1RY",
-  // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "bookshelf-b2a6f.firebaseapp.com",
   projectId: "bookshelf-b2a6f",
   storageBucket: "bookshelf-b2a6f.appspot.com",
