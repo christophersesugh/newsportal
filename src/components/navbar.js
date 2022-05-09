@@ -13,7 +13,6 @@ function Navbar() {
           News Portal
         </Typography>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/favorite">Favorites</NavLink>
         <LogoutIcon color="inherit" onClick={logout} sx={{ color: "red" }} />
       </Toolbar>
     </AppBar>

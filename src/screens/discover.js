@@ -22,11 +22,11 @@ const cat = "&categories=";
 
 function DiscoverNews() {
   const { data, run, error, reset, isError, isSuccess, isLoading } = useAsync();
+  const [query, setQuery] = React.useState("");
+  const [queried, setQueried] = React.useState(false);
   const [language, setLanguage] = React.useState("en");
   const [category, setCategory] = React.useState("business");
 
-  const [query, setQuery] = React.useState("");
-  const [queried, setQueried] = React.useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     setQuery(event.target.elements.search.value);
@@ -34,9 +34,6 @@ function DiscoverNews() {
   };
 
   React.useEffect(() => {
-    if (!queried) {
-      return;
-    }
     run(
       client(
         `${endpoint}${encodeURIComponent(
@@ -45,8 +42,6 @@ function DiscoverNews() {
       )
     );
   }, [category, language, queried, query, run]);
-
-  console.log(data);
 
   return (
     <Container maxWidth="md">
@@ -81,7 +76,9 @@ function DiscoverNews() {
 
       {isError ? (
         <Box component="div" mt={4}>
-          <Typography component="p">Oh! There was an error.</Typography>
+          <Typography component="p">
+            Oh! There was an error, try refreshing the page.
+          </Typography>
           <Typography component="p" sx={{ color: "red" }}>
             {error.message}
           </Typography>
@@ -106,9 +103,13 @@ function DiscoverNews() {
           <NewsCategory category={category} setCategory={setCategory} />
         </Box>
       </Box>
-      {isSuccess ? (
+      {isLoading ? (
+        <Grid container mt={4} sx={{ display: "grid", placeItems: "center" }}>
+          <CircularProgress size={60} />
+        </Grid>
+      ) : isSuccess ? (
         data?.data?.length ? (
-          <Grid container spacing={4} sx={{ mt: 5 }}>
+          <Grid container spacing={4} mt={5}>
             {data.data.map((article) => {
               return <NewsCard key={article.uuid} article={article} />;
             })}

@@ -42,8 +42,6 @@ const AuthProvider = ({ children }) => {
     );
   }, []);
 
-  console.log(user);
-
   if (isLoading || isIdle) {
     return <Loading />;
   }
@@ -53,10 +51,10 @@ const AuthProvider = ({ children }) => {
   }
 
   if (isSuccess) {
-    const value = { register, login, user, logout, token };
+    const props = { register, login, user, logout, token };
 
     return (
-      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={props}>{children}</AuthContext.Provider>
     );
   }
 

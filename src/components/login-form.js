@@ -54,9 +54,6 @@ function LoginForm({ onSubmit, buttonText, headerText }) {
         <Alert severity="error">
           {error.message.slice(9, error.message.length - 1)}
         </Alert>
-        // <Typography component="p" color="error">
-        //   {error.message.slice(9, error.message.length - 1)}
-        // </Typography>
       )}
     </Stack>
   );

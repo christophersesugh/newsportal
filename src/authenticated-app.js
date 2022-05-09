@@ -4,20 +4,17 @@ import DiscoverNews from "screens/discover";
 import Navbar from "components/navbar";
 import Article from "screens/article";
 import NotFound from "screens/not-found";
-import Favorite from "screens/favorite";
 
-function AuthenticatedApp({ logout, user }) {
+function AuthenticatedApp() {
   return (
-    <>
-      <Navbar logout={logout} user={user} />
+    <main>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<DiscoverNews user={user} />} />
-        <Route path="/article/uuid/:uuid" element={<Article user={user} />} />
-        <Route path="/favorite" element={<Favorite user={user} />} />
+        <Route path="/" element={<DiscoverNews />} />
+        <Route path="/article/uuid/:uuid" element={<Article />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <Footer /> */}
-    </>
+    </main>
   );
 }
 
